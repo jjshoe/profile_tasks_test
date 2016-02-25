@@ -1,0 +1,22 @@
+- name: first task to run
+  debug: msg="first"
+
+- name: second task to run
+  pause: seconds=2
+
+- name: echo all the things
+  command: echo {{ item }}
+  with_items:
+    - how
+    - now
+    - brown
+    - cow
+  notify:
+    - list done
+
+- name: Shell cat /tmp/stop
+  shell: cat /tmp/stop
+  register: result
+  until: result.stdout.find("stop") != -1
+  retries: 100000
+  delay: 2

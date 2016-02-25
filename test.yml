@@ -1,0 +1,4 @@
+- hosts: ansible_devel 
+  gather_facts: True
+  roles:
+    - test 
